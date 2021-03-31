@@ -23,12 +23,12 @@ def upload_file():
 
 		img.save("static/"+img.filename)
 
-	
+
 		caption = caption_this_image("static/"+img.filename)
 
 
 
-		
+
 		result_dic = {
 			'image' : "static/" + img.filename,
 			'description' : caption
@@ -38,4 +38,4 @@ def upload_file():
 
 
 if __name__ == '__main__':
-	app.run(debug = True)
+	app.run(host='0.0.0.0', port=5555,debug = True)
