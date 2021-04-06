@@ -53,8 +53,6 @@ def save_data():
         print("capt is null")
     name = request.form["fname"]
     res = request.form["fval"]
-    if (opt != None or capt != None):
-        flash("Thank you for your suggestions!!")
     df = pd.DataFrame.from_records([{
         "Filename": name,
         "Generated Caption": res,
