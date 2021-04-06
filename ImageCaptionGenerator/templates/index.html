@@ -21,6 +21,42 @@
 			font-size: 32px;
 			font-style: italic;
 		}
+
+		.star-rating {
+			font-size: 0;
+		}
+
+		.star-rating__wrap {
+			display: inline-block;
+			font-size: 1rem;
+		}
+
+		.star-rating__wrap:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.star-rating__ico {
+			float: right;
+			padding-left: 2px;
+			cursor: pointer;
+			color: #FFB300;
+		}
+
+		.star-rating__ico:last-child {
+			padding-left: 0;
+		}
+
+		.star-rating__input {
+			display: none;
+		}
+
+		.star-rating__ico:hover:before,
+		.star-rating__ico:hover~.star-rating__ico:before,
+		.star-rating__input:checked~.star-rating__ico:before {
+			content: "\f005";
+		}
 	</style>
 
 </head>
@@ -38,7 +74,6 @@
 		<form class="form-inline" enctype="multipart/form-data" action="/" method="POST">
 			<label><b>Image: &nbsp;&nbsp; </b></label>
 			<input type="file" class="form-control" name="image">
-
 			<button type="submit" class="btn btn-primary"> Submit</button>
 		</form>
 
@@ -54,9 +89,58 @@
 				<p class="text">Generated Caption : </p>
 				<p><b> {{results.description}} </b> </p>
 			</div>
-			{% endif %}
+
 
 		</div>
+
+		<!--
+		<form class="form-inline" action="/getCaption" method="POST">
+			<label><b>Suggest Better Caption: &nbsp;&nbsp; </b></label>
+			<input type="text" class="form-control" name="captionSuggestion">
+			<button type="submit" class="btn btn-primary"> Submit</button>
+		</form> -->
+
+		<form class="margin: auto" action="/getRate" method="POST">
+			<label><b>Suggest Better Caption: &nbsp;&nbsp; </b></label>
+			<input type="text" class="form-control" name="captionSuggestion">
+			<div class="star-rating">
+				<div class="star-rating__wrap">
+					<label><b>Rate Caption: &nbsp;&nbsp; </b></label>
+					<p>
+						<input type="radio" name="options" id="1" value="option1"> 1 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="1" title="1 out of 10 stars"></label>
+
+						<input type="radio" name="options" id="2" value="option1"> 2 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="2" title="1 out of 10 stars"></label>
+
+						<input type="radio" name="options" id="3" value="option1"> 3 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="3" title="1 out of 10 stars"></label>
+
+						<input type="radio" name="options" id="4" value="option1"> 4 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="4" title="1 out of 10 stars"></label>
+						<input type="radio" name="options" id="5" value="option1"> 5 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="5" title="1 out of 10 stars"></label>
+						<input type="radio" name="options" id="6" value="option1"> 6 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="6" title="1 out of 10 stars"></label>
+						<input type="radio" name="options" id="7" value="option1"> 7 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="7" title="1 out of 10 stars"></label>
+						<input type="radio" name="options" id="8" value="option1"> 8 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="8" title="1 out of 10 stars"></label>
+						<input type="radio" name="options" id="9" value="option1"> 9 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="9" title="1 out of 10 stars"></label>
+						<input type="radio" name="options" id="10" value="option1"> 10 </input<br>
+						<label class="star-rating__ico fa fa-star-o fa-lg" for="10" title="1 out of 10 stars"></label>
+					</p>
+				</div>
+			</div>
+			<input type="hidden" name="fname" value={{results.filename}} />
+			<input type="hidden" name="fval" value='{{results.description}}' />
+
+			<p><input type=submit value=Submit></p>
+
+			{% endif %}
+		</form>
+
 
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
